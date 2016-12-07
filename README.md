@@ -1,4 +1,4 @@
-# UsDemographicMapSample-ForMvc
+# Us Demographic Map Sample Template for Mvc
 
 ### Description
 
