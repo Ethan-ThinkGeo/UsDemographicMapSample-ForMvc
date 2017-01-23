@@ -219,7 +219,7 @@ namespace MapSuiteUsDemographicMap.Controllers
             map.CurrentExtent = new RectangleShape(-128.17864375, 56.9286546875, -69.11614375, 20.1903734375);
 
             // base map layers
-            WorldMapKitWmsWebOverlay worldMapKitOverlay = new WorldMapKitWmsWebOverlay();
+            WorldStreetsAndImageryOverlay worldMapKitOverlay = new WorldStreetsAndImageryOverlay();
             map.CustomOverlays.Add(worldMapKitOverlay);
 
             // us states layer

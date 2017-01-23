@@ -40,7 +40,7 @@ namespace ThinkGeo.MapSuite.USDemographicMap
         protected override Style GetStyleCore(FeatureSource featureSource)
         {
             PieZedGraphStyle zedGraphStyle = new PieZedGraphStyle();
-            zedGraphStyle.ZedGraphDrawing += new EventHandler<ZedGraphDrawingEventArgs>(zedGraphStyle_ZedGraphDrawing);
+            zedGraphStyle.ZedGraphDrawing += ZedGraphStyle_ZedGraphDrawing;
             pieColors = GeoColor.GetColorsInQualityFamily(GeoColor.FromArgb(Opacity, Color), SelectedColumns.Count);
             for (int i = 0; i < SelectedColumns.Count; i++)
             {
@@ -51,7 +51,7 @@ namespace ThinkGeo.MapSuite.USDemographicMap
             return zedGraphStyle;
         }
 
-        void zedGraphStyle_ZedGraphDrawing(object sender, ZedGraphDrawingEventArgs e)
+       private void ZedGraphStyle_ZedGraphDrawing(object sender, ZedGraphDrawingEventArgs e)
         {
             ZedGraphControl zedGraph = new ZedGraphControl();
             zedGraph.Size = new Size(100, 100);
