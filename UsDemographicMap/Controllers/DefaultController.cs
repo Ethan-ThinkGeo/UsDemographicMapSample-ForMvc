@@ -85,12 +85,11 @@ namespace MapSuiteUsDemographicMap.Controllers
             }
             selectedColumns.Add("Name");
 
-            ((CloudPopup)map.Popups["featureInfoPopup"]).Position = identifiedFeature.GetShape().GetCenterPoint();
-
             // Find the identified feature with specified columns
             ShapeFileFeatureLayer statesLayer = map.DynamicOverlay.Layers["usStatesLayer"] as ShapeFileFeatureLayer;
             statesLayer.Open();
             Feature identifiedFeature = statesLayer.FeatureSource.GetFeatureById(callbackRequest.SelectedFeatureId, selectedColumns);
+            ((CloudPopup)map.Popups["featureInfoPopup"]).Position = identifiedFeature.GetShape().GetCenterPoint();
 
             // Format the inner-html of the popup
             StringBuilder popupHtml = new StringBuilder("<table>");
