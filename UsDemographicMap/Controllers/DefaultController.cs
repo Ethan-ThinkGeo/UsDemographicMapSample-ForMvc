@@ -85,6 +85,8 @@ namespace MapSuiteUsDemographicMap.Controllers
             }
             selectedColumns.Add("Name");
 
+            ((CloudPopup)map.Popups["featureInfoPopup"]).Position = identifiedFeature.GetShape().GetCenterPoint();
+
             // Find the identified feature with specified columns
             ShapeFileFeatureLayer statesLayer = map.DynamicOverlay.Layers["usStatesLayer"] as ShapeFileFeatureLayer;
             statesLayer.Open();
@@ -240,7 +242,7 @@ namespace MapSuiteUsDemographicMap.Controllers
             statesLayer.Close();
 
             // Add hover-popup
-            CloudPopup featureinfoPopup = new CloudPopup("featureInfoPopup", new PointShape(-300, -200), "State Info"); // make the popup out of map view temporarily
+            CloudPopup featureinfoPopup = new CloudPopup("featureInfoPopup", new PointShape(-98.64739375, 38.5595140625), "State Info"); // make the popup out of map view temporarily
             featureinfoPopup.AutoSize = true;
             map.Popups.Add(featureinfoPopup);
 
