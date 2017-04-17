@@ -1,4 +1,4 @@
-# Us Demographic Map Sample for Mvc
+# Us Demographic Map Sample
 
 ### Description
 
