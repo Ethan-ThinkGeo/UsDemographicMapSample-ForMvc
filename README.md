@@ -15,7 +15,27 @@ This sample makes use of the following NuGet Packages
 
 ### About the Code
 
-Working...
+```csharp
+
+// us states layer
+            ShapeFileFeatureLayer statesLayer = new ShapeFileFeatureLayer(Server.MapPath(ConfigurationManager.AppSettings["UsShapefilePath"]));
+            ThematicDemographicStyleBuilder selectedStyle = new ThematicDemographicStyleBuilder(new Collection<string>() { "Population" });
+            statesLayer.ZoomLevelSet.ZoomLevel01.CustomStyles.Add(selectedStyle.GetStyle(statesLayer.FeatureSource));
+            statesLayer.ZoomLevelSet.ZoomLevel01.ApplyUntilZoomLevel = ApplyUntilZoomLevel.Level20;
+            map.DynamicOverlay.Layers.Add("usStatesLayer", statesLayer);
+
+            // highlight layers
+            map.HighlightOverlay.HighlightStyle = new FeatureOverlayStyle(GeoColor.FromArgb(150, GeoColor.FromHtml("#449FBC")), GeoColor.FromHtml("#014576"), 1);
+            map.HighlightOverlay.Style = new FeatureOverlayStyle(GeoColor.SimpleColors.Transparent, GeoColor.SimpleColors.Transparent, 0);
+            statesLayer.Open();
+            foreach (Feature feature in statesLayer.FeatureSource.GetAllFeatures(ReturningColumnsType.NoColumns))
+            {
+                map.HighlightOverlay.Features.Add(feature.Id, feature);
+            }
+            statesLayer.Close();
+    }
+
+```
 
 ### Getting Help
 
@@ -30,7 +50,9 @@ Working...
 ### Key APIs
 This example makes use of the following APIs:
 
-Working...
+- [ThinkGeo.MapSuite.Mvc.CloudPopup](http://wiki.thinkgeo.com/wiki/api/thinkgeo.mapsuite.mvc.cloudpopup)
+- [ThinkGeo.MapSuite.Layers.LegendAdornmentLayer](http://wiki.thinkgeo.com/wiki/api/thinkgeo.mapsuite.layers.legendadornmentlayer)
+- [ThinkGeo.MapSuite.Styles.ClassBreakStyle](http://wiki.thinkgeo.com/wiki/api/thinkgeo.mapsuite.styles.classbreakstyle)
 
 ### About Map Suite
 Map Suite is a set of powerful development components and services for the .Net Framework.
